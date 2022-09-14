@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+  labels:
+    app: k3s-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k3s-server
+  template:
+    metadata:
+      labels:
+        app: k3s-server
+    spec:
+      containers:
+      - name: k3s-server
+        image: saoirseod/rpi-hostname:v1
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 9000
